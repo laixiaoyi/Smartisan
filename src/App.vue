@@ -134,6 +134,7 @@ export default {
           border-bottom: 1px solid #d8d8d8;
           width: 1220px;
           margin: 0 auto;
+          line-height: 28px;
           >ul{
             display: flex;
             >.router-link-active{

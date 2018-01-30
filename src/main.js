@@ -10,7 +10,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './assets/common.scss'
 import './config/global'
 import './config/filter'
-
+import './config/interceptor'
 Vue.config.productionTip = false
 // 使用部分element-ui组件
 Vue.use(Button)
