@@ -5,36 +5,88 @@
 */
 
 <template>
-    <div class="commodityList">
+    <ul>
       <!--商品列表-->
-      <ul>
-        <li>fdas</li>
-      </ul>
-    </div>
+        <li>
+          <a href="javascript:;">
+            <img :src="commodityList.sku_info[imageIndex].ali_image" alt="">
+          </a>
+          <p>{{commodityList.name}}</p>
+          <p>{{commodityList.name_title}}</p>
+          <div>
+            <a v-for="(itema, index) in commodityList.sku_info" :key="index" @click="specImage(index)"><img :src="itema.spec_json.image" alt=""></a>
+          </div>
+        </li>
+    </ul>
 </template>
 
 <script>
 export default {
-  name: 'commodity-list'
+  name: 'commodity-list',
+  // 接收父级传递的数据
+  props: ['commodityList'],
+  data () {
+    return {
+      imageIndex: 0
+    }
+  },
+  methods: {
+    // 点击切换图片事件
+    specImage (indexa) {
+      this.imageIndex = indexa
+      // console.log(this.imageIndex)
+    }
+  }
 }
 </script>
 
 <style scoped lang="scss">
-  .commodityList{
-    width: 100%;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  ul{
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    >ul{
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-      width: 25%;
-      height: 430px;
-      border-right: 1px solid #ccc;
+    width: 25%;
+    height: 430px;
+    border-right: 1px solid #ccc;
+    padding-top: 50px;
+      >li{
+        >div{
+          display: flex;
+          justify-content: center;
+          >a{
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 15px;
+            height: 15px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            margin: 30px 5px 0;
+            >img{
+              width: 7px;
+              height: 7px;
+              border-radius: 50%;
+            }
+          }
+        }
+        >a{
+          width: 200px;
+          height: 200px;
+          margin: 0 auto;
+        }
+        >p{
+          text-align: center;
+          color: #000;
+          margin-top: 10px;
+        }
+        >p:nth-child(3){
+          font-size: 12px;
+          color: #ccc;
+        }
+      }
     }
-  }
 </style>

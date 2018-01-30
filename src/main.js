@@ -4,10 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
-// 引入element-ui插件
+// 引入element-ui插件中部分组件
 import { Button } from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './assets/common.scss'
+import './config/global'
 
 Vue.config.productionTip = false
 // 使用部分element-ui组件

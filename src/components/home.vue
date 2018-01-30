@@ -11,7 +11,9 @@
       <li>价格高到底</li>
     </ul>
     <!--商品列表组件-->
-    <commodity-list></commodity-list>
+    <div>
+      <commodity-list v-for="(item, index) in commodityList" :key="index" :commodityList="item"></commodity-list>
+    </div>
   </div>
 </template>
 
@@ -24,7 +26,15 @@ export default {
   },
   data () {
     return {
+      commodityList: []
     }
+  },
+  created () {
+    // 请求商品列表数据
+    this.axios.get(global.globalData.url + 'list').then(res => {
+      this.commodityList = res.data
+      console.log(this.commodityList)
+    })
   }
 }
 </script>
@@ -54,6 +64,16 @@ export default {
         margin-left: 9px;
         color: #5d8bc2;
       }
+    }
+    >div{
+      display: flex;
+      width: 100%;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
     }
   }
 </style>
