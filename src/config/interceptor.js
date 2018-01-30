@@ -13,12 +13,12 @@
 import axios from 'axios'
 import { Loading, Message } from 'element-ui'
 // 超时时间
-axios.defaults.timeout = 5000
+axios.defaults.timeout = 10000
 // http请求拦截器
 var loadinginstace
 axios.interceptors.request.use(config => {
   // element ui Loading方法
-  loadinginstace = Loading.service({ fullscreen: true })
+  loadinginstace = Loading.service({ fullscreen: true, text: '正在拼命加载...', background: 'rgba(0,0,0,0.6)' })
   return config
 }, error => {
   loadinginstace.close()
@@ -34,7 +34,7 @@ axios.interceptors.response.use(data => { // 响应成功关闭loading
 }, error => {
   loadinginstace.close()
   Message.error({
-    message: '加载失败'
+    message: '加载失败，请检查网络'
   })
   return Promise.reject(error)
 })

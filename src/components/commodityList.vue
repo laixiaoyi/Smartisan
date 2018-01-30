@@ -8,9 +8,9 @@
     <ul>
       <!--商品列表-->
       <li>
-        <a href="javascript:;">
+        <router-link tag="a" href="javascript:;" to="/details">
           <img :src="commodityList.sku_info[imageIndex].ali_image" alt="">
-        </a>
+        </router-link>
         <p>{{commodityList.sku_info[imageIndex].title}}</p>
         <p>{{commodityList.sku_info[imageIndex].sub_title}}</p>
         <div>
@@ -19,7 +19,7 @@
         <p class="price">￥<span>{{commodityList.sku_info[imageIndex].price | current}}</span></p>
       </li>
       <div class="button">
-        <el-button size="small">查看详情</el-button
+        <el-button size="small" @click="Cdetails">查看详情</el-button
         ><el-button size="small" type="primary">加入购物车</el-button>
       </div>
     </ul>
@@ -40,6 +40,10 @@ export default {
     specImage (indexa) {
       this.imageIndex = indexa
       // console.log(this.imageIndex)
+    },
+    Cdetails () {
+      this.$router.push('/Details')
+      // console.log(this.$router)
     }
   }
 }
@@ -118,7 +122,7 @@ ul{
 }
 ul:hover{
   box-shadow: 0px 0px 50px 0px #e6e6e6 inset;
-  transition: all 1s;
+  transition: all 0.7s;
   >.button{
     opacity: 1;
     transition: all 0.7s;
