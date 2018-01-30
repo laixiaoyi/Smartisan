@@ -11,11 +11,12 @@
           <a href="javascript:;">
             <img :src="commodityList.sku_info[imageIndex].ali_image" alt="">
           </a>
-          <p>{{commodityList.name}}</p>
-          <p>{{commodityList.name_title}}</p>
+          <p>{{commodityList.sku_info[imageIndex].title}}</p>
+          <p>{{commodityList.sku_info[imageIndex].sub_title}}</p>
           <div>
-            <a v-for="(itema, index) in commodityList.sku_info" :key="index" @click="specImage(index)"><img :src="itema.spec_json.image" alt=""></a>
+            <a :class="{'active':index===imageIndex}" v-for="(itema, index) in commodityList.sku_info" :key="index" @click="specImage(index)"><img :src="itema.spec_json.image" alt=""></a>
           </div>
+          <p class="price">￥<span>{{commodityList.sku_info[imageIndex].price | current}}</span></p>
         </li>
     </ul>
 </template>
@@ -31,7 +32,7 @@ export default {
     }
   },
   methods: {
-    // 点击切换图片事件
+    // 点击切换商品数据事件
     specImage (indexa) {
       this.imageIndex = indexa
       // console.log(this.imageIndex)
@@ -72,6 +73,9 @@ export default {
               border-radius: 50%;
             }
           }
+          >.active{
+            border: 2px solid #ccc;
+          }
         }
         >a{
           width: 200px;
@@ -86,6 +90,14 @@ export default {
         >p:nth-child(3){
           font-size: 12px;
           color: #ccc;
+        }
+        >.price{
+          margin-top: 20px;
+          color: #d60c32;
+          font-weight: 900;
+          >span{
+            font-size: 18px;
+          }
         }
       }
     }
