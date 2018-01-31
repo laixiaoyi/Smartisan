@@ -6,7 +6,7 @@
 
 <template>
   <ul class="commodityDetails">
-    <!--商品列表-->
+    <!--商品详情-->
     <li v-for="(item, index) in oDetails" :key="index" v-if="item.sku_id==routeId">
       <ul>
         <li v-for="(item1, index1) in item.ali_images" :key="index1"><img :src="item1" alt=""></li>
@@ -21,13 +21,15 @@
         <div>
           <span>颜色选择</span>
           <ul>
+            <!--路由传参切换商品-->
             <router-link tag="li" v-for="(item2, index2) in item.sku_list" :key="index2" :to="{name:'commodityDetails', params: {id: item2.id}}">
               <img :src="item2.image" alt="">
             </router-link>
           </ul>
         </div>
         <div>
-          fdsa
+          <span>数量选择</span>
+          <el-input-number v-model="num1" @change="handleChange" :min="1" :max="item.limit_num" label="描述文字"></el-input-number>
         </div>
       </div>
     </li>
@@ -40,15 +42,20 @@ export default {
   data () {
     return {
       oDetails: {},
-      routeId: 0
+      routeId: 0,
+      num1: 1
     }
   },
   methods: {
+    // 请求数据
     getCode () {
       this.axios.get(global.globalData.url + 'detail').then(res => {
         this.oDetails = res.data
         console.log(this.oDetails)
       })
+    },
+    handleChange (value) {
+      // console.log(value)
     }
   },
   created () {
@@ -56,8 +63,11 @@ export default {
     this.routeId = this.$route.params.id
   },
   watch: {
+    // 监听路由变化，获取当前路由id
     $route () {
       this.routeId = this.$route.params.id
+      // 路由变化时商品数量初始化为1
+      this.num1 = 1
     }
   }
 }
@@ -152,6 +162,19 @@ export default {
             >.router-link-active{
               border: 2px solid #868686;
             }
+          }
+        }
+        >div:nth-child(3){
+          padding: 30px 0;
+          display: flex;
+          border-bottom: 1px solid rgba(0,0,0,.08);
+          >span{
+            display: inline-block;
+            width: 80px;
+            height: 39px;
+            line-height: 39px;
+            color: #666;
+            font-size: 14px;
           }
         }
       }

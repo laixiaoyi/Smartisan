@@ -7,6 +7,3 @@ import Vue from 'vue'
 Vue.filter('current', value => {
   return parseFloat(value).toFixed(2)
 })
-Vue.filter('dataId', (obj, id) => {
-  return obj
-})

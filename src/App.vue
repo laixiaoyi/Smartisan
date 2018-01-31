@@ -22,7 +22,7 @@
             <span class="iconfont">&#xe67a;</span>
             <a href="#">
               <span class="iconfont">&#xe600;</span>
-              <span>0</span>
+              <span>{{comQuantity}}</span>
             </a>
           </div>
         </div>
@@ -51,7 +51,12 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  computed: {
+    comQuantity () {
+      return this.$store.state.comQuantity
+    }
+  }
 }
 </script>
 
