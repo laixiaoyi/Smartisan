@@ -8,7 +8,8 @@
     <ul>
       <!--商品列表-->
       <li>
-        <router-link tag="a" href="javascript:;" to="/details">
+        <!--跳转至商品详情页路由传参-->
+        <router-link tag="a" href="javascript:;" :to="{name:'commodityDetails', params: {id: commodityList.sku_info[imageIndex].sku_id}}">
           <img :src="commodityList.sku_info[imageIndex].ali_image" alt="">
         </router-link>
         <p>{{commodityList.sku_info[imageIndex].title}}</p>
@@ -19,8 +20,11 @@
         <p class="price">￥<span>{{commodityList.sku_info[imageIndex].price | current}}</span></p>
       </li>
       <div class="button">
-        <el-button size="small" @click="Cdetails">查看详情</el-button
-        ><el-button size="small" type="primary">加入购物车</el-button>
+        <!--跳转至商品详情页路由传参-->
+        <router-link tag="p" :to="{name:'commodityDetails', params: {id: commodityList.sku_info[imageIndex].sku_id}}">
+          <el-button size="small">查看详情</el-button>
+        </router-link>
+        <el-button size="small" type="primary">加入购物车</el-button>
       </div>
     </ul>
 </template>
@@ -40,10 +44,6 @@ export default {
     specImage (indexa) {
       this.imageIndex = indexa
       // console.log(this.imageIndex)
-    },
-    Cdetails () {
-      this.$router.push('/Details')
-      // console.log(this.$router)
     }
   }
 }
@@ -118,6 +118,9 @@ ul{
     left: 10%;
     bottom: 30px;
     justify-content: center;
+    >p{
+      margin-right: 10px;
+    }
   }
 }
 ul:hover{
