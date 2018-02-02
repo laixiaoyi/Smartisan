@@ -15,6 +15,7 @@ export default new Router({
       component: Home
     },
     {
+      // 商品详情页
       path: '/Details/:id',
       name: 'commodityDetails',
       component: commodityDetails

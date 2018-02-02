@@ -33,7 +33,6 @@ export default {
     // 请求商品列表数据
     this.axios.get(global.globalData.url + 'list').then(res => {
       this.commodityList = res.data
-      console.log(this.commodityList)
     })
   }
 }
@@ -44,6 +43,7 @@ export default {
   .mian{
     width: 1220px;
     margin: 0 auto;
+    border-top: 1px solid #ccc;
     >ul{
       display: flex;
       height: 60px;

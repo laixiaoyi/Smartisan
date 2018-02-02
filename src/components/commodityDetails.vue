@@ -9,9 +9,9 @@
     <!--商品详情-->
     <li v-for="(item, index) in oDetails" :key="index" v-if="item.sku_id==routeId">
       <ul>
-        <li v-for="(item1, index1) in item.ali_images" :key="index1"><img :src="item1" alt=""></li>
+        <li v-for="(item1, index1) in item.ali_images" :key="index1" :class="{'liactive': index1===imageIndex}" @click="imageChange(index1)"><img :src="item1" alt=""></li>
       </ul>
-      <p><img :src="item.ali_images[0]" alt=""></p>
+      <p><img :src="item.ali_images[imageIndex]" alt=""></p>
       <div>
         <div>
           <h1>{{item.title}}</h1>
@@ -43,7 +43,8 @@ export default {
     return {
       oDetails: {},
       routeId: 0,
-      num1: 1
+      num1: 1,
+      imageIndex: 0
     }
   },
   methods: {
@@ -53,6 +54,10 @@ export default {
         this.oDetails = res.data
         console.log(this.oDetails)
       })
+    },
+    // 切换商品数据
+    imageChange (index) {
+      this.imageIndex = index
     },
     handleChange (value) {
       // console.log(value)
@@ -66,8 +71,9 @@ export default {
     // 监听路由变化，获取当前路由id
     $route () {
       this.routeId = this.$route.params.id
-      // 路由变化时商品数量初始化为1
+      // 路由变化时初始化数据
       this.num1 = 1
+      this.imageIndex = 0
     }
   }
 }
@@ -76,7 +82,8 @@ export default {
 <style scoped lang="scss">
   .commodityDetails{
     display: flex;
-    width: 100%;
+    margin: 0 auto;
+    width: 1220px;
     background: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -185,13 +192,19 @@ export default {
       }
       >ul{
         >li{
-          width: 54px;
-          height: 54px;
+          width: 80px;
+          height: 80px;
           margin-top: 10px;
           padding: 12px;
           border: 1px solid rgba(0,0,0,.06);
           border-radius: 5px;
           cursor: pointer;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+        }
+        >.liactive{
+          border: 3px solid rgba(0,0,0,.2);
         }
         >li:first-child{
           margin: 0;

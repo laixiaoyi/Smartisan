@@ -6,9 +6,10 @@ import router from './router'
 import axios from 'axios'
 import store from './store'
 // 引入element-ui插件中部分组件
-import { Button, InputNumber } from 'element-ui'
+import { Button, InputNumber, Popover, Table, TableColumn } from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './assets/common.scss'
+import './assets/shoppingTrolley.scss'
 import './config/global'
 import './config/filter'
 import './config/interceptor'
@@ -17,6 +18,9 @@ Vue.config.productionTip = false
 // 使用部分element-ui组件
 Vue.use(Button)
 Vue.use(InputNumber)
+Vue.use(Popover)
+Vue.use(Table)
+Vue.use(TableColumn)
 // 使用axios插件
 Vue.prototype.axios = axios
 

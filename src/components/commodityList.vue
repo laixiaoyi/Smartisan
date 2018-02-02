@@ -24,7 +24,7 @@
         <router-link tag="p" :to="{name:'commodityDetails', params: {id: commodityList.sku_info[imageIndex].sku_id}}">
           <el-button size="small">查看详情</el-button>
         </router-link>
-        <el-button size="small" type="primary">加入购物车</el-button>
+        <el-button size="small" type="primary" @click="joinshopping(commodityList.sku_info[imageIndex])">加入购物车</el-button>
       </div>
     </ul>
 </template>
@@ -43,7 +43,10 @@ export default {
     // 点击切换商品数据事件
     specImage (indexa) {
       this.imageIndex = indexa
-      // console.log(this.imageIndex)
+    },
+    // 将加入购物车的商品传到vuex中
+    joinshopping (obj) {
+      this.$store.commit('joinshopping', obj)
     }
   }
 }
