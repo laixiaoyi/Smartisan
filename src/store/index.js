@@ -10,7 +10,9 @@ let store = new Vuex.Store({
   state: {
     // 购物总数量
     comQuantity: 0,
+    // 购物总价格
     totalPrices: 0,
+    // 该值用于控制购物车是否显示
     showShoppingTrolley: false,
     // 购物车中的商品
     shoppingArr: []
